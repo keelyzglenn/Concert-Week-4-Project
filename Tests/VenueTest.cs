@@ -52,7 +52,28 @@ namespace Concert
             // Assert
             Assert.Equal(newVenue, result);
         }
-        
+
+
+        [Fact]
+        public void AddBand_AddsAndGetsBandToBand_ListBands()
+        {
+            // Arrange
+            Band newBand = new Band("Drake");
+            newBand.Save();
+
+            Venue newVenue = new Venue("Madison Square Garden");
+            newVenue.Save();
+
+            // Act
+            newVenue.AddBand(newBand);
+
+            List<Band> result = newVenue.GetBands();
+            List<Band> expectedResult = new List<Band>{newBand};
+
+            // Arrange
+            Assert.Equal(expectedResult, result);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
