@@ -1,5 +1,9 @@
+@{
+    Layout="Shared/_layout.cshtml";
+}
+
 <h2>@Model["band"].GetName()</h2>
-<h3>@Model["band"].GetDate()</h3>
+
 <hr />
 @if (@Model["bandVenues"].Count != 0)
 {
@@ -12,15 +16,20 @@
   </ul>
 }
 <h4>Add a venue for this band:</h4>
-<form action='/band/add_venue' method='post'>
+<form action='/band/new_venue' method='post'>
+<div class="input-field col l12">
   <input id='band-id' name='band-id' type='hidden' value='@Model["band"].GetId()'>
-  <label for='venue-id'>Select a venue</label>
-  <select id='venue-id' name='venue-id' type='text'>
-    @foreach (var venue in @Model["allVenues"])
-    {
-      <option value='@venue.GetId()'>@venue.GetName()</option>
-    }
-  </select>
- <button type='submit'>Add</button>
+     <label for='venue-id'>Select a venue</label>
+     <select id='venue-id' name='venue-id' type='text'>
+       @foreach (var venue in @Model["allVenues"])
+       {
+         <option value='@venue.GetId()'>@venue.GetName()</option>
+       }
+     </select>
+ </div>
+ <p>
+
+     <button type='submit'>Add</button>
+ </p>
 </form>
 <p><a href="/">Return to Main Page</a></p>

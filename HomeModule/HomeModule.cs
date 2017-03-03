@@ -17,11 +17,11 @@ namespace Concert
                 return View["venues.cshtml", AllVenues];
             };
 
-            Get["/venues/new"] = _ => {
+            Get["/venue/new"] = _ => {
                 return View["venue_new.cshtml"];
             };
 
-            Post["/venues/new"] = _ => {
+            Post["/venue/new"] = _ => {
                 Venue newVenue = new Venue(Request.Form["venue-name"]);
                 newVenue.Save();
                 List<Venue> AllVenues = Venue.GetAll();
@@ -45,17 +45,18 @@ namespace Concert
                 venue.AddBand(band);
                 return View["success.cshtml"];
             };
-// for bands
+
+            // for bands
             Get["/bands"] = _ => {
                 List<Band> AllBands = Band.GetAll();
                 return View["bands.cshtml", AllBands];
             };
 
-            Get["/bands/new"] = _ => {
+            Get["/band/new"] = _ => {
                 return View["band_new.cshtml"];
             };
 
-            Post["/bands/new"] = _ => {
+            Post["/band/new"] = _ => {
                 Band newBand = new Band(Request.Form["band-name"]);
                 newBand.Save();
                 List<Band> AllBands = Band.GetAll();
@@ -73,9 +74,18 @@ namespace Concert
                 return View["band.cshtml", model];
             };
 
-            Post["band/add_venue"] = _ => {
-               Venue venue = Venue.Find(Request.Form["venue-id"]);
-               Band band = Band.Find(Request.Form["band-id"]);
-               band.AddVenue(venue);
-               return View["success.cshtml"];
-           };
+            Post["bands/new_venue"] = _ => {
+                Venue venue = Venue.Find(Request.Form["venue-id"]);
+                Band band = Band.Find(Request.Form["band-id"]);
+                band.AddVenue(venue);
+                return View["success.cshtml"];
+            };
+
+
+            Post["/band/delete"] = _ => {
+              Band.DeleteAll();
+              return View["success.cshtml"];
+          };
+        }
+    }
+}
