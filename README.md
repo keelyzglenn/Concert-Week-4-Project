@@ -13,13 +13,13 @@ This app is for venues and bands. The app allows users to add bands and venues, 
 ### Recreate Database
 
 In SQLCMD:
-* CREATE DATABASE hair\_salon;
+* CREATE DATABASE band_tracker;
 * GO
-* USE hair\_salon;
+* USE band_tracker;
 * GO
-* CREATE TABLE clients (name VARCHAR(255), stylist_id INT, id INT IDENTITY(1,1));
+* CREATE TABLE bands (id INT IDENTITY(1,1), name VARCHAR(255));
 * GO
-* CREATE TABLE stylist (name VARCHAR(255), shift VARCHAR(255), specialty VARCHAR(255), id INT IDENTITY(1,1));
+* CREATE TABLE stylist (id INT IDENTITY(1,1)m name VARCHAR(255));
 * GO
 
 ## Link
