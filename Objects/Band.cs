@@ -173,6 +173,40 @@ namespace Concert
             }
         }
 
+        public List<Venue> GetVenues()
+        {
+            List<Venue> venues = new List<Venue>{};
+
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT venues.* FROM bands JOIN bands_venues ON (bands.id = bands_venues.band_id) JOIN venues ON (venues.id = bands_venues.venue_id) WHERE bands.id = @BandId;", conn);
+
+            SqlParameter bandId = new SqlParameter();
+            bandId.ParameterName = "@BandId";
+            bandId.Value = this.GetId().ToString();
+            cmd.Parameters.Add(bandId);
+
+            while(rdr.Read())
+            {
+                int venueId = rdr.GetInt32(0);
+                int venueName = rdr.GetString(1);
+
+                Venue newVenue = new Venue(venueName, venueId);
+                venues.Add(newVenue);
+            }
+
+            if (rdr != null)
+           {
+             rdr.Close();
+           }
+           if (conn != null)
+           {
+             conn.Close();
+           }
+           return venues;
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();
