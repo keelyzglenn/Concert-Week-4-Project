@@ -1,16 +1,27 @@
 /*for all pages*/
 .container {
     height: 600px;
-
 }
 
+body {
+    background-image: url("../img/rothko.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+form {
+    color:black;
+}
 
 a:link {
-    color: black;
+    color: white;
      text-decoration: none;
 }
+
 a:visited {
-    color: black;
+    color: white;
     text-decoration: none;
 }
 
@@ -19,7 +30,7 @@ a:hover {
     text-decoration: none;
 }
 
-.header {
+.header a {
     text-align: center;
     margin-top: 10px;
 }
@@ -35,11 +46,12 @@ a:hover {
 }
 
 #venue-link {
-    padding-left: 20px;
+    padding-left: 25px;
     padding-right: 20px;
     padding-top: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 5px;
     margin-left: 100px;
+    font: black;
 
 }
 
@@ -47,8 +59,17 @@ a:hover {
     padding-left: 25px;
     padding-right: 20px;
     padding-top: 0px;
-    padding-bottom: 0px;
+    padding-bottom: 5px;
     margin-right: 50px;
+}
+
+a:link #venue-link {
+    color: black;
+     text-decoration: none;
+}
+
+button {
+    background-color: transparent;
 }
 
 /*for venues*/
@@ -71,4 +92,13 @@ a:hover {
 
 #venue-id {
     padding: 10px;
+}
+
+/*for bands*/
+.bands {
+    margin-left: 30px;
+}
+
+.add-venue {
+    text-align: center;
 }

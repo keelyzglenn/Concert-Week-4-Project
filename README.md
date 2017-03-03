@@ -23,14 +23,12 @@ In SQLCMD:
 * GO
 
 ## Link
-https://github.com/keelyzglenn/Hair-Salon-Week-3-Project
+https://github.com/keelyzglenn/Concert-Week-4-Project
 
 ## Technologies Used
 
 * HTML
-* Materialize
-* Jquery
-* Javascript
+* Bootstrap
 * CSS
 * C#
 * Nancy
