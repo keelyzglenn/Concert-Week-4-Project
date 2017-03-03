@@ -74,6 +74,24 @@ namespace Concert
             Assert.Equal(expectedResult, result);
         }
 
+        [Fact]
+        public void Test_Update_UpdateVenueInData()
+        {
+            // Arrange
+            Venue oldVenue = new Venue("Madison Square Garden");
+            oldVenue.Save();
+
+            string newVenue = "The Knitting Factory";
+
+            // Act
+            oldVenue.Update(newVenue);
+
+            string result = oldVenue.GetName();
+
+            // Assert
+            Assert.Equal(newVenue, result);
+        }
+
         public void Dispose()
         {
             Venue.DeleteAll();
