@@ -2,23 +2,22 @@
     Layout="Shared/_layout.cshtml";
 }
 
-<h2>Bands:</h2>
+<h2>Bands</h2>
+
 @if (Model.Count != 0)
 {
   <ul>
     @foreach (var band in Model)
     {
-      <li><a href='/bands/@band.GetId()'>@band.GetName()</a></li>
+      <h4 class="bands"><a href="/bands/@band.GetId()">@band.GetName()</a></h4>
     }
   </ul>
 }
+<hr />
+<h4> Dont see the band your looking for? </h4>
+<h4><a href="/band/new">Add a new one</a></h4>
 
-<h4><a href="/band/new">Add new band</a></h4>
-
-
+<hr />
 <form action="/band/delete" method="post">
-    <button type="submit">Delete All Bands</button>
+    <button type='submit' class="btn btn-default btn-m" class="form-buttons">Delete All Bands</button>
 </form>
-
-
-<h4><a href="/">Return home</a></h4>

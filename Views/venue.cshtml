@@ -18,16 +18,16 @@
     <h4>Want to add an artist or band to this venue?</h4>
         <form action='/venue/add_band' method='post'>
           <input id='venue-id' name='venue-id' type='hidden' value='@Model["venue"].GetId()'>
-         <p><label for='band-id'>Select an artist or band</label></p>
-          <p>
-            <select id='band-id' name='band-id' type='text'>
-            @foreach (var band in @Model["allBands"])
-            {
-              <option value='@band.GetId()'>@band.GetName()</option>
-            }
-          </select>
-        <button type='submit' class="btn btn-default btn-m" class="form-buttons">Add</button>
-        </p>
+             <p><label for='band-id'>Select an artist or band</label></p>
+              <p>
+                <select id='band-id' name='band-id' type='text'>
+                @foreach (var band in @Model["allBands"])
+                {
+                  <option value='@band.GetId()'>@band.GetName()</option>
+                }
+              </select>
+            <button type='submit' class="btn btn-default btn-m" class="form-buttons">Add</button>
+            </p>
         </form>
 </div>
 <hr />

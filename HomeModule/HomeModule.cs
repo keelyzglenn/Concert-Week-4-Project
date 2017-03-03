@@ -48,10 +48,10 @@ namespace Concert
             };
 
             Patch["venues/{id}/updated"] = parameters => {
-            Venue SelectedVenue = Venue.Find(parameters.id);
-            SelectedVenue.Update(Request.Form["new-name"]);
-            List<Venue> AllVenues = Venue.GetAll();
-            return View["venues.cshtml", AllVenues];
+                Venue SelectedVenue = Venue.Find(parameters.id);
+                SelectedVenue.Update(Request.Form["new-name"]);
+                List<Venue> AllVenues = Venue.GetAll();
+                return View["venues.cshtml", AllVenues];
             };
 
             Delete["venues/{id}/delete"] = parameters => {
@@ -79,19 +79,19 @@ namespace Concert
             };
 
             Get["bands/{id}"] = parameters => {
-                Dictionary<string, object> model = new Dictionary<string, object>();
-                Band SelectedBand = Band.Find(parameters.id);
-                List<Venue> BandVenues = SelectedBand.GetVenues();
-                List<Venue> AllVenues = Venue.GetAll();
-                model.Add("band", SelectedBand);
-                model.Add("bandVenues", BandVenues);
-                model.Add("allVenues", AllVenues);
-                return View["band.cshtml", model];
-            };
+              Dictionary<string, object> model = new Dictionary<string, object>();
+              Band SelectedBand = Band.Find(parameters.id);
+              List<Venue> BandVenues = SelectedBand.GetVenues();
+              List<Venue> AllVenues = Venue.GetAll();
+              model.Add("band", SelectedBand);
+              model.Add("bandVenues", BandVenues);
+              model.Add("allVenues", AllVenues);
+              return View["band.cshtml", model];
+          };
 
-            Post["bands/new_venue"] = _ => {
-                Venue venue = Venue.Find(Request.Form["venue-id"]);
+            Post["/band/add_venue"] = _ => {
                 Band band = Band.Find(Request.Form["band-id"]);
+                Venue venue = Venue.Find(Request.Form["venue-id"]);
                 band.AddVenue(venue);
                 List<Band> AllBands = Band.GetAll();
                 return View["bands.cshtml", AllBands];
@@ -100,7 +100,8 @@ namespace Concert
 
             Post["/band/delete"] = _ => {
               Band.DeleteAll();
-              return View["success.cshtml"];
+              List<Band> AllBands = Band.GetAll();
+              return View["bands.cshtml", AllBands];
           };
         }
     }
