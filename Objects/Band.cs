@@ -121,7 +121,7 @@ namespace Concert
 
             SqlParameter bandId = new SqlParameter();
             bandId.ParameterName = "@BandId";
-            bandId.Value = this.GetId();
+            bandId.Value = id.ToString();
             cmd.Parameters.Add(bandId);
 
             SqlDataReader rdr = cmd.ExecuteReader();

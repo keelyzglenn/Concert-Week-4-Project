@@ -50,7 +50,7 @@ namespace Concert
             Band result = Band.Find(newBand.GetId());
 
             // Assert
-            Assert.Equal(newBand, result)
+            Assert.Equal(newBand, result);
         }
 
 
