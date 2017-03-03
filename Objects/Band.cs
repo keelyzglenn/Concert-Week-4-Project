@@ -148,6 +148,31 @@ namespace Concert
             return foundBand;
         }
 
+        public void AddVenue(Venue newVenue)
+        {
+            SqlConection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlComnand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
+
+            SqlParameter bandId = new SqlParameter();
+            bandId.ParameterName = "@BandId";
+            bandId.Value = this.GetId();
+            cmd.Parameters.Add(bandId);
+
+            SqlParameter venueId = new SqlParameter();
+            venueId.ParameterName = "@VenueId";
+            venueId.Value = newVenue.GetId();
+            cmd.Parameters.Add(venueId);
+
+            cmd.ExecuteNonQuery();
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
+        }
+
         public static void DeleteAll()
         {
             SqlConnection conn = DB.Connection();
