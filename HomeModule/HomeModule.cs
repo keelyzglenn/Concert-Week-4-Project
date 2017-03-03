@@ -43,7 +43,15 @@ namespace Concert
                 Venue venue = Venue.Find(Request.Form["venue-id"]);
                 Band band = Band.Find(Request.Form["band-id"]);
                 venue.AddBand(band);
-                return View["success.cshtml"];
+                List<Venue> AllVenues = Venue.GetAll();
+                return View["venues.cshtml", AllVenues];
+            };
+
+            Patch["venues/{id}/updated"] = parameters => {
+            Venue SelectedVenue = Venue.Find(parameters.id);
+            SelectedVenue.Update(Request.Form["new-name"]);
+            List<Venue> AllVenues = Venue.GetAll();
+            return View["venues.cshtml", AllVenues];
             };
 
             // for bands
@@ -78,7 +86,8 @@ namespace Concert
                 Venue venue = Venue.Find(Request.Form["venue-id"]);
                 Band band = Band.Find(Request.Form["band-id"]);
                 band.AddVenue(venue);
-                return View["success.cshtml"];
+                List<Band> AllBands = Band.GetAll();
+                return View["bands.cshtml", AllBands];
             };
 
 

@@ -9,21 +9,40 @@
   <ul>
     @foreach (var band in @Model["venueBands"])
     {
-      <li>@band.GetName()</li>
+      <h5>@band.GetName()</h5>
     }
   </ul>
 }
-<h4>Add a band to this venue:</h4>
-<form action='/venue/add_band' method='post'>
-  <input id='venue-id' name='venue-id' type='hidden' value='@Model["venue"].GetId()'>
-  <label for='band-id'>Select a band</label>
-  <select id='band-id' name='band-id' type='text'>
-    @foreach (var band in @Model["allBands"])
-    {
-      <option value='@band.GetId()'>@band.GetName()</option>
-    }
-  </select>
-  <button type='submit'>Add</button>
-</form>
+<hr />
+<div class = "add-band">
+    <h4>Want to add an artist or band to this venue?</h4>
+        <form action='/venue/add_band' method='post'>
+          <input id='venue-id' name='venue-id' type='hidden' value='@Model["venue"].GetId()'>
+         <p><label for='band-id'>Select an artist or band</label></p>
+          <p>
+            <select id='band-id' name='band-id' type='text'>
+            @foreach (var band in @Model["allBands"])
+            {
+              <option value='@band.GetId()'>@band.GetName()</option>
+            }
+          </select>
+        <button type='submit' class="btn btn-default btn-m" class="form-buttons">Add</button>
+        </p>
+        </form>
+        <br>
+        <h4>No artists or bands added yet?</h4>
+        <h4><a href="/band/new">Add new band</a></h4>
+</div>
+<hr />
+<div class= "update">
+    <h4>Update @Model["venue"].GetName()</h4>
+    <form action="/venues/@Model.GetId()/updated" method="post">
+        <input type="hidden" name="_method" value="PATCH">
+        <label for="new-name">New venue name:</label>
+        <input id="new-name" name="new-name" type="text">
+        <button type='submit' class="btn btn-default btn-m" class="form-buttons">Update venue</button>
+    </form>
+</div>
+<hr />
 
-<p><a href="/">Return to Main Page</a></p>
+<h4><a href="/venues">Return to Venues</a></h4>

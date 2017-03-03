@@ -1,6 +1,9 @@
+/*for all pages*/
 .container {
     height: 600px;
+
 }
+
 
 a:link {
     color: black;
@@ -21,6 +24,7 @@ a:hover {
     margin-top: 10px;
 }
 
+/*for index*/
 .buttons {
     text-align: center;
     margin-top: 100px;
@@ -45,4 +49,26 @@ a:hover {
     padding-top: 0px;
     padding-bottom: 0px;
     margin-right: 50px;
+}
+
+/*for venues*/
+
+.venues {
+    margin-left: 30px;
+}
+
+.add-band {
+    text-align: center;
+}
+
+.form-buttons {
+    margin-left: 10px;
+}
+
+#band-id {
+    padding: 10px;
+}
+
+#venue-id {
+    padding: 10px;
 }
