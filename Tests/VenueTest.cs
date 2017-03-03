@@ -112,7 +112,7 @@ namespace Concert
             List<Venue> testBandVenues = new List<Venue> {};
 
             //Assert
-            Assert.Equal(testBandCategories, resultBandCategories);
+            Assert.Equal(testBandVenues, resultBandVenues);
         }
 
 
