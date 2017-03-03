@@ -9,7 +9,7 @@ namespace Concert
         private int _id;
         private string _name;
 
-        public Band(string Name, int Id = 0);
+        public Band(string Name, int Id = 0)
         {
             _id = Id;
             _name = Name;
@@ -21,13 +21,13 @@ namespace Concert
         }
 
         // id
-        public bool GetId()
+        public int GetId()
         {
             return _id;
         }
 
         // name getter and setter
-        public bool GetName()
+        public string GetName()
         {
             return _name;
         }
@@ -46,13 +46,21 @@ namespace Concert
             }
             else
             {
-                Bnad newBand = (Band) otherBand;
+                Band newBand = (Band) otherBand;
                 bool idEquality = this.GetId() == newBand.GetId();
                 bool nameEquality = this.GetName() == newBand.GetName();
                 return (idEquality && nameEquality);
             }
         }
 
+        public static void DeleteAll()
+      {
+          SqlConnection conn = DB.Connection();
+          conn.Open();
+          SqlCommand cmd = new SqlCommand("DELETE FROM bands;", conn);
+          cmd.ExecuteNonQuery();
+          conn.Close();
+      }
 
     }
 }

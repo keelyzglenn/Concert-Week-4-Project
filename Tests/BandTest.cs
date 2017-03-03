@@ -12,5 +12,22 @@ namespace Concert
         {
             DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
         }
+
+        [Fact]
+        public void Test_EqualOverrideTrueForSame()
+        {
+            // Arrange, Act
+            Band firstBand = new Band("Johnny Flynn");
+            Band secondBand = new Band("Johnny Flynn");
+
+            // Assert
+            Assert.Equal(firstBand, secondBand);
+        }
+
+
+        public void Dispose()
+        {
+            Band.DeleteAll();
+        }
       }
   }
