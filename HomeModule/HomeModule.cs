@@ -54,6 +54,13 @@ namespace Concert
             return View["venues.cshtml", AllVenues];
             };
 
+            Delete["venues/{id}/delete"] = parameters => {
+              Venue SelectedVenue = Venue.Find(parameters.id);
+              SelectedVenue.Delete();
+              List<Venue> AllVenues = Venue.GetAll();
+              return View["venues.cshtml", AllVenues];
+          };
+
             // for bands
             Get["/bands"] = _ => {
                 List<Band> AllBands = Band.GetAll();
