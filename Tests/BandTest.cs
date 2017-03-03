@@ -33,7 +33,7 @@ namespace Concert
 
             // Act
             List<Band> result = Band.GetAll();
-            List<Band> expectedResult = new List<Book>{newBand};
+            List<Band> expectedResult = new List<Band>{newBand};
 
             // Assert
             Assert.Equal(expectedResult, result);

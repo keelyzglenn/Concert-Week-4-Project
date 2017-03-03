@@ -55,7 +55,7 @@ namespace Concert
 
         public static List<Band> GetAll()
         {
-            List<Book> AllBands = new List<Book>{};
+            List<Band> AllBands = new List<Band>{};
 
             SqlConnection conn = DB.Connection();
             conn.Open();
@@ -74,13 +74,42 @@ namespace Concert
             }
             if (rdr != null)
             {
-                rdr = Close();
+                rdr.Close();
             }
             if (conn != null)
             {
                 conn.Close();
             }
             return AllBands;
+        }
+
+        public void Save()
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("INSERT INTO bands (name) OUTPUT INSERTED.id VALUES (@BandName);", conn);
+
+            SqlParameter bandName = new SqlParameter();
+            bandName.ParameterName = "@BandName";
+            bandName.Value = this.GetName();
+
+            cmd.Parameters.Add(bandName);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._id = rdr.GetInt32(0);
+            }
+            if(rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
         public static void DeleteAll()
