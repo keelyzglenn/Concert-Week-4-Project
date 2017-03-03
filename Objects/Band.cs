@@ -150,10 +150,10 @@ namespace Concert
 
         public void AddVenue(Venue newVenue)
         {
-            SqlConection conn = DB.Connection();
+            SqlConnection conn = DB.Connection();
             conn.Open();
 
-            SqlCommand cmd = new SqlComnand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
+            SqlCommand cmd = new SqlCommand("INSERT INTO bands_venues (band_id, venue_id) VALUES (@BandId, @VenueId);", conn);
 
             SqlParameter bandId = new SqlParameter();
             bandId.ParameterName = "@BandId";
@@ -187,10 +187,12 @@ namespace Concert
             bandId.Value = this.GetId().ToString();
             cmd.Parameters.Add(bandId);
 
+            SqlDataReader rdr = cmd.ExecuteReader();
+
             while(rdr.Read())
             {
                 int venueId = rdr.GetInt32(0);
-                int venueName = rdr.GetString(1);
+                string venueName = rdr.GetString(1);
 
                 Venue newVenue = new Venue(venueName, venueId);
                 venues.Add(newVenue);
