@@ -111,42 +111,42 @@ namespace Concert
                 conn.Close();
             }
         }
-        //
-        // public static Venue Find(int id)
-        // {
-        //     SqlConnection conn = DB.Connection();
-        //     conn.Open();
-        //
-        //     SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
-        //
-        //     SqlParameter venueId = new SqlParameter();
-        //     venueId.ParameterName = "@VenueId";
-        //     venueId.Value = id.ToString();
-        //     cmd.Parameters.Add(venueId);
-        //
-        //     SqlDataReader rdr = cmd.ExecuteReader();
-        //
-        //     int foundVenueId = 0;
-        //     string foundVenueName = null;
-        //
-        //     while(rdr.Read())
-        //     {
-        //         foundVenueId = rdr.GetInt32(0);
-        //         foundVenueName = rdr.GetString(1);
-        //     }
-        //     Venue foundVenue = new Venue(foundVenueName, foundVenueId);
-        //
-        //     if (rdr != null)
-        //     {
-        //         rdr.Close();
-        //     }
-        //     if (conn != null)
-        //     {
-        //         conn.Close();
-        //     }
-        //
-        //     return foundVenue;
-        // }
+
+        public static Venue Find(int id)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("SELECT * FROM venues WHERE id = @VenueId;", conn);
+
+            SqlParameter venueId = new SqlParameter();
+            venueId.ParameterName = "@VenueId";
+            venueId.Value = id.ToString();
+            cmd.Parameters.Add(venueId);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            int foundVenueId = 0;
+            string foundVenueName = null;
+
+            while(rdr.Read())
+            {
+                foundVenueId = rdr.GetInt32(0);
+                foundVenueName = rdr.GetString(1);
+            }
+            Venue foundVenue = new Venue(foundVenueName, foundVenueId);
+
+            if (rdr != null)
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+
+            return foundVenue;
+        }
 
         public static void DeleteAll()
         {

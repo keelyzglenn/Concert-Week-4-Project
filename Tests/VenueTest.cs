@@ -38,23 +38,21 @@ namespace Concert
             // Assert
             Assert.Equal(expectedResult, result);
         }
-        //
-        // [Fact]
-        // public void Test_FindVenueIdInDatabase_band()
-        // {
-        //     // Arrange
-        //     Venue newVenue = new Venue("Madison Square Garden");
-        //     newVenue.Save();
-        //
-        //     // Act
-        //     Venue result = Venue.Find(newVenue.GetId());
-        //
-        //     // Assert
-        //     Assert.Equal(newVenue, result);
-        // }
-        //
 
+        [Fact]
+        public void Test_FindVenueIdInDatabase_band()
+        {
+            // Arrange
+            Venue newVenue = new Venue("Madison Square Garden");
+            newVenue.Save();
 
+            // Act
+            Venue result = Venue.Find(newVenue.GetId());
+
+            // Assert
+            Assert.Equal(newVenue, result);
+        }
+        
         public void Dispose()
         {
             Venue.DeleteAll();
