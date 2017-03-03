@@ -199,14 +199,49 @@ namespace Concert
             }
 
             if (rdr != null)
-           {
-             rdr.Close();
-           }
-           if (conn != null)
-           {
-             conn.Close();
-           }
-           return bands;
+            {
+                rdr.Close();
+            }
+            if (conn != null)
+            {
+                conn.Close();
+            }
+            return bands;
+        }
+
+        public void Update(string newVenueName)
+        {
+            SqlConnection conn = DB.Connection();
+            conn.Open();
+
+            SqlCommand cmd = new SqlCommand("UPDATE venues SET name = @NewVenueName OUTPUT INSERTED.name WHERE id = @VenueId;", conn);
+
+            SqlParameter newName = new SqlParameter();
+            newName.ParameterName = "@NewVenueName";
+            newName.Value = newVenueName;
+            cmd.Parameters.Add(newName);
+
+            SqlParameter venueId = new SqlParameter();
+            venueId.ParameterName = "@VenueId";
+            venueId.Value = this.GetId();
+            cmd.Parameters.Add(venueId);
+
+            SqlDataReader rdr = cmd.ExecuteReader();
+
+            while(rdr.Read())
+            {
+                this._name = rdr.GetString(0);
+            }
+
+            if (rdr !=null)
+            {
+                rdr.Close();
+            }
+
+            if (conn != null)
+            {
+                conn.Close();
+            }
         }
 
 
