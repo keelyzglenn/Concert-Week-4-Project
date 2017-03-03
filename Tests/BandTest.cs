@@ -25,7 +25,7 @@ namespace Concert
         }
 
         [Fact]
-        public void Test_SaveAndGetAll()
+        public void Test_SaveAndGetAll_ListOfBands()
         {
             // Arrange
             Band newBand = new Band("Drake");
@@ -38,6 +38,21 @@ namespace Concert
             // Assert
             Assert.Equal(expectedResult, result);
         }
+
+        [Fact]
+        public void Test_FindBandIdInDatabase_band()
+        {
+            // Arrange
+            Band newBand = new Band("Drake");
+            newBand.Save();
+
+            // Act
+            Band result = Band.Find(newBand.GetId());
+
+            // Assert
+            Assert.Equal(newBand, result)
+        }
+
 
 
         public void Dispose()
