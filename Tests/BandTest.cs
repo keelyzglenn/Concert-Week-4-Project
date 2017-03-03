@@ -6,9 +6,9 @@ using System.Data.SqlClient;
 
 namespace Concert
 {
-    public class BookTest : IDisposable
+    public class BandTest : IDisposable
     {
-        public BookTest()
+        public BandTest()
         {
             DBConfiguration.ConnectionString = "Data Source=(localdb)\\mssqllocaldb;Initial Catalog=band_tracker_test;Integrated Security=SSPI;";
         }
